@@ -28,35 +28,57 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int x1, y1, x2, y2, x3, y3, x4, y4;
-    cin >> x1 >> y1 >> x2 >> y2;
-    if (x1 == x2)
+    int tst;
+    cin >> tst;
+    while (tst--)
     {
-        if (y1 > y2)
+        int n;
+        cin >> n;
+        map<int, int> room, active;
+        for (int i = 0; i < n; i++)
         {
-            x3 = x1 + y1 - y2;
-            y3 = y2;
+            int a, b;
+            cin >> a >> b;
+            if (room[a] == 0)
+            {
+                room[a] = 1;
+                active[a] = INT_MAX;
+                active[a] = min(active[a], a + b);
+            }
+            else if (room[a] == 1)
+            {
+                active[a] = min(active[a], a + b);
+            }
         }
-        else
+
+        int r = 1, sec = 1;
+        while (true)
         {
-            x3 = x1 + y2 - y1;
-            y3 = y1;
+            if (room[r + 1] != 1)
+            {
+                r++;
+                sec++;
+            }
+            else if (room[r + 1] && active[r + 1] > r + 1)
+            {
+                r++;
+                sec++;
+            }
+            int temps = sec, flag = 0;
+            for (int i = r - 1; i >= 1; i--)
+            {
+                temps++;
+                if (room[i] == 1 && active[i] <= temps)
+                {
+                    flag = 1;
+                    break;
+                }
+            }
+            if (flag)
+                break;
         }
-        x4 = x3;
-        y4 = max(y1, y2);
-        cout << x3 << " " << y3 << " " << x4 << " " << y4 << endl;
+        cout << r - 1 << endl;
     }
-    else if (y1 == y2)
-    {
-        cout << x1 << " " << y1 + (abs(x2 - x1)) << " " << x2 << " " << y2 + (abs(x2 - x1));
-    }
-    else if (x1 == x2 && y1 != y2)
-        cout << x3 << " " << y3 << " " << x4 << " " << y4 << endl;
-    else if (abs(x1 - x2) == abs(y2 - y1))
-        cout
-            << x1 << " " << y2 << " " << x2 << " " << y1 << endl;
-    else
-        cout << -1 << endl;
 
     return 0;
 }

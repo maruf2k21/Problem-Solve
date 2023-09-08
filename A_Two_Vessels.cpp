@@ -28,35 +28,17 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int x1, y1, x2, y2, x3, y3, x4, y4;
-    cin >> x1 >> y1 >> x2 >> y2;
-    if (x1 == x2)
+    int tst;
+    cin >> tst;
+    while (tst--)
     {
-        if (y1 > y2)
-        {
-            x3 = x1 + y1 - y2;
-            y3 = y2;
-        }
-        else
-        {
-            x3 = x1 + y2 - y1;
-            y3 = y1;
-        }
-        x4 = x3;
-        y4 = max(y1, y2);
-        cout << x3 << " " << y3 << " " << x4 << " " << y4 << endl;
+        int a, b, c;
+        cin >> a >> b >> c;
+        double av = (a + b) * 1.00 / 2;
+        double rem = max(a, b) - av;
+        int ans = ceil(rem * 1.00 / c);
+        cout << ans << endl;
     }
-    else if (y1 == y2)
-    {
-        cout << x1 << " " << y1 + (abs(x2 - x1)) << " " << x2 << " " << y2 + (abs(x2 - x1));
-    }
-    else if (x1 == x2 && y1 != y2)
-        cout << x3 << " " << y3 << " " << x4 << " " << y4 << endl;
-    else if (abs(x1 - x2) == abs(y2 - y1))
-        cout
-            << x1 << " " << y2 << " " << x2 << " " << y1 << endl;
-    else
-        cout << -1 << endl;
 
     return 0;
 }

@@ -22,41 +22,35 @@ typedef tree<long long, null_type, less_equal<long long>, rb_tree_tag, tree_orde
 #define lcm(a, b) a *b / gcd(a, b)       //
 #define memz(a) memset(a, 0, sizeof(a))  //
 #define memn(a) memset(a, -1, sizeof(a)) //
+char ch[105][105];
 
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int x1, y1, x2, y2, x3, y3, x4, y4;
-    cin >> x1 >> y1 >> x2 >> y2;
-    if (x1 == x2)
+    int n, m;
+    cin >> n >> m;
+    for (int i = 0; i < n; i++)
     {
-        if (y1 > y2)
+        for (int j = 0; j < m; j++)
         {
-            x3 = x1 + y1 - y2;
-            y3 = y2;
+            cin >> ch[i][j];
         }
-        else
-        {
-            x3 = x1 + y2 - y1;
-            y3 = y1;
-        }
-        x4 = x3;
-        y4 = max(y1, y2);
-        cout << x3 << " " << y3 << " " << x4 << " " << y4 << endl;
     }
-    else if (y1 == y2)
+    for (int i = 0; i < n; i++)
     {
-        cout << x1 << " " << y1 + (abs(x2 - x1)) << " " << x2 << " " << y2 + (abs(x2 - x1));
+        for (int j = 0; j < m; j++)
+        {
+            if (ch[i][j] == '-')
+                cout << ch[i][j];
+            else if ((i + j) % 2)
+                cout << 'W';
+            else
+                cout << 'B';
+        }
+        cout << endl;
     }
-    else if (x1 == x2 && y1 != y2)
-        cout << x3 << " " << y3 << " " << x4 << " " << y4 << endl;
-    else if (abs(x1 - x2) == abs(y2 - y1))
-        cout
-            << x1 << " " << y2 << " " << x2 << " " << y1 << endl;
-    else
-        cout << -1 << endl;
 
     return 0;
 }
